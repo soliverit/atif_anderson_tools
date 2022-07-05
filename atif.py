@@ -14,6 +14,7 @@ os.chdir("C:\\repos\\anderson_atif_projects")
 # Do stuff
 ##
 linker = AtifLinker(["A", "B", "C"])
+length	= len(linker.chains)
 linker.parse()
 linker.filterUnique()
 linker.toCSV("./data/all_options_atif.csv")
@@ -33,7 +34,8 @@ andFiltered	= linker.filterAnd(
 ##
 # Print stuff
 ##
-print(len(linker.chains))
-print(len(orFiltered.chains))
-print(len(andFiltered.chains))
+print(len(length))				# All options
+print(len(linker.chains))		# Unique
+print(len(orFiltered.chains))	# OR filtered
+print(len(andFiltered.chains))	# AND filtered
 
