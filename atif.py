@@ -1,3 +1,16 @@
+import csv
+from lib.atif_linker import AtifLinker
+import os
+os.chdir("C:\\repos\\anderson_atif_projects")
+linker = AtifLinker()
+linker.parse()
+print(len(linker.chains))
+linker.filter()
+print(len(linker.chains))
+linker.toCSV("./data/all_options_atif.csv")
+exit()
+#######################################
+
 ##
 # Includes
 ##
