@@ -34,8 +34,17 @@ andFiltered	= linker.filterAnd(
 ##
 # Print stuff
 ##
-print(len(length))				# All options
+print(length)			# All options
 print(len(linker.chains))		# Unique
 print(len(orFiltered.chains))	# OR filtered
 print(len(andFiltered.chains))	# AND filtered
 
+##
+# Parse filters
+##
+parsedFilters	= AtifLinker.parseFilters("./data/test_filters.csv")
+orFiltered		= linker.filterOr(parsedFilters)
+andFitered		= linker.filterAnd(parsedFilters)
+print("--- Parsed filters ---")
+print(len(orFiltered.chains))
+print(len(andFiltered.chains))

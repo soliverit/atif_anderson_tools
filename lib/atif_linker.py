@@ -101,4 +101,16 @@ class AtifLinker():
 			if not failed:
 				newLinker.append(chain)
 		return newLinker
+	##
+	# Parse filters
+	##
+	@staticmethod
+	def parseFilters(path):
+		filters	= []
+		with open(path, encoding="utf-8-sig") as file:
+			csvReader	= csv.reader(file)
+			for row in csvReader:
+				filters.append(row)
+		return filters
+			
 	
