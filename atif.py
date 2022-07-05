@@ -13,9 +13,16 @@ os.chdir("C:\\repos\\anderson_atif_projects")
 ##
 # Do stuff
 ##
-linker = AtifLinker()
+linker = AtifLinker(["A", "B", "C"])
 linker.parse()
-print(len(linker.chains))
 linker.filter()
-print(len(linker.chains))
 linker.toCSV("./data/all_options_atif.csv")
+
+filtered	= linker.filterOr([["A", "Natural light in the stair well"]])
+
+##
+# Print stuff
+##
+print(len(linker.chains))
+print(len(filtered.chains))
+
