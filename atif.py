@@ -15,7 +15,7 @@ os.chdir("C:\\repos\\anderson_atif_projects")
 ##
 linker = AtifLinker(["A", "B", "C"])
 linker.parse()
-linker.filter()
+linker.filterUnique()
 linker.toCSV("./data/all_options_atif.csv")
 
 filtered	= linker.filterOr([["A", "Natural light in the stair well"]])

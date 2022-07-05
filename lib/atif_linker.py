@@ -1,9 +1,22 @@
 import csv
 from .linker_chain	import LinkerChain
 class AtifLinker():
+	##
+	# labels:		An array of labels that are associated with the list of values in each Chain
+	##
 	def __init__(self, labels):
 		self.labels	= labels.copy()
 		self.chains	= []
+	##
+	# Add chain 
+	##
+	def append(self, chain):
+		self.chains.append(chain)
+	##
+	# Read the 2 CSV files
+	#
+	# Note: could use the other list. Shouldn't have inline file paths
+	##
 	def parse(self):
 		links1		= []
 		links2		= []
@@ -24,16 +37,25 @@ class AtifLinker():
 			if linkCount == 0:
 				self.append(LinkerChain([link1[0], link1[1]]))
 		self.stripValues()
+	##
+	# Strip or trim whitespace from all values of all chains
+	##
 	def stripValues(self):
 		for chain in self.chains:
 			for id in range(len(chain.values)):
 				chain.values[id] = chain.values[id].replace("\n","").replace("\r", "")
+	##
+	# Write the CSV file 
+	##
 	def toCSV(self, path):
 		with open(path, "w", newline='') as file:
 			csvFile	= csv.writer(file)
 			for chain in self.chains:
 				csvFile.writerow(chain.values)
-	def filter(self):
+	##
+	# Remove duplicates
+	##
+	def filterUnique(self):
 		newChainList	= []
 		for chain in self.chains:
 			duplicate = False
@@ -44,8 +66,13 @@ class AtifLinker():
 			if not duplicate:
 				newChainList.append(chain)
 		self.chains	= newChainList
-	def append(self, chain):
-		self.chains.append(chain)
+	##
+	# OR filter. Select records that meet any criteria
+	#
+	# filters:	An array of [value label, value] filters.
+	#
+	# returns:	A new AtifLinker
+	##
 	def filterOr(self, filters):
 		newLinker	= self.__class__(self.labels)
 		for filter in filters:
