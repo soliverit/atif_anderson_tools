@@ -82,3 +82,23 @@ class AtifLinker():
 					if chain.values[labelID] == filter[1]:
 						newLinker.append(chain)
 		return newLinker
+	##
+	# AND filter. Select records that all criteria
+	#
+	# filters:	An array of [value label, value] filters.
+	#
+	# returns:	A new AtifLinker
+	##
+	def filterAnd(self, filters):
+		newLinker	= self.__class__(self.labels)
+		for chain in self.chains:
+			failed	= False
+			for filter in filters:
+				labelID	= self.labels.index(filter[0])
+				if chain.values[labelID] != filter[1]:
+					failed	= True
+					break
+			if not failed:
+				newLinker.append(chain)
+		return newLinker
+	

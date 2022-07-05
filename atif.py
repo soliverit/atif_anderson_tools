@@ -18,11 +18,22 @@ linker.parse()
 linker.filterUnique()
 linker.toCSV("./data/all_options_atif.csv")
 
-filtered	= linker.filterOr([["A", "Natural light in the stair well"]])
-
+orFiltered	= linker.filterOr(
+	[
+		["A", "Wardrobe space"],
+		["B", "Sufficient storage"]
+	]
+)
+andFiltered	= linker.filterAnd(
+	[
+		["A", "Wardrobe space"],
+		["B", "Sufficient storage"]
+	]
+)
 ##
 # Print stuff
 ##
 print(len(linker.chains))
-print(len(filtered.chains))
+print(len(orFiltered.chains))
+print(len(andFiltered.chains))
 
